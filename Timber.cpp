@@ -11,7 +11,22 @@ int main()
     VideoMode vm(1920, 1080);
 
     // create and open a window for the game
-    RenderWindow window(vm, "Timber!", Style::Default);
+    RenderWindow window(vm, "Timber!", Style::Fullscreen);
+
+    // texture to hold graphics on the GPU
+    Texture textureBackground;
+
+    // load background img into GPU
+    textureBackground.loadFromFile("graphics/background.png");
+
+    // init background as sprite for placement
+    Sprite spriteBackground;
+    
+    // link sprite and graphics
+    spriteBackground.setTexture(textureBackground);
+
+    // set position of background relative to viewscreen
+    spriteBackground.setPosition(0,0);
 
     while (window.isOpen())
     {
@@ -33,6 +48,10 @@ int main()
         */
         // draw a new scene
         window.clear();
+
+        // display background onto screenview
+        window.draw(spriteBackground);
+
         window.display();
     }
 
