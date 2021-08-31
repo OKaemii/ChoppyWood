@@ -16,22 +16,32 @@ int main()
     // texture to hold graphics on the GPU
     Texture textureBackground;
     Texture textureTree;
+    Texture textureBee;
 
     // load background img into GPU
     textureBackground.loadFromFile("graphics/background.png");
     textureTree.loadFromFile("graphics/tree.png");
+    textureBee.loadFromFile("graphics/bee.png");
 
     // init background, and tree as sprite for placement
     Sprite spriteBackground;
     Sprite spriteTree;
+    Sprite spriteBee;
     
     // link sprite and graphics
     spriteBackground.setTexture(textureBackground);
     spriteTree.setTexture(textureTree);
+    spriteBee.setTexture(textureBee);
 
     // set position of background and sprite relative to viewscreen
     spriteBackground.setPosition(0,0);
     spriteTree.setPosition(810, 0);
+    spriteBee.setPosition(0, 800);
+
+    // is bee currently mobile?
+    bool beeAcive = false;
+    // bee stats
+    float beeSpeed = 0.0f;
 
     while (window.isOpen())
     {
