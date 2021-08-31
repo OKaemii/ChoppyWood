@@ -15,18 +15,23 @@ int main()
 
     // texture to hold graphics on the GPU
     Texture textureBackground;
+    Texture textureTree;
 
     // load background img into GPU
     textureBackground.loadFromFile("graphics/background.png");
+    textureTree.loadFromFile("graphics/tree.png");
 
-    // init background as sprite for placement
+    // init background, and tree as sprite for placement
     Sprite spriteBackground;
+    Sprite spriteTree;
     
     // link sprite and graphics
     spriteBackground.setTexture(textureBackground);
+    spriteTree.setTexture(textureTree);
 
-    // set position of background relative to viewscreen
+    // set position of background and sprite relative to viewscreen
     spriteBackground.setPosition(0,0);
+    spriteTree.setPosition(810, 0);
 
     while (window.isOpen())
     {
@@ -51,10 +56,10 @@ int main()
 
         // display background onto screenview
         window.draw(spriteBackground);
+        window.draw(spriteTree);
 
         window.display();
     }
 
     return 0;
-
 }
