@@ -13,6 +13,17 @@ int main()
 	// create and open a window for the game
 	RenderWindow window(vm, "Timber!", Style::Fullscreen);
 
+	// game text gui
+	Font fontKOMIKABG;
+	fontKOMIKABG.loadFromFile("fonts/KOMIKABG.ttf");
+
+	Text textGamePrompt;
+	// game prompt text properties
+	textGamePrompt.setString("Press Enter to start!");
+	textGamePrompt.setCharacterSize(75);
+	textGamePrompt.setFillColor(Color::White);
+	textGamePrompt.setFont(fontKOMIKABG);
+
 	// texture to hold graphics on the GPU
 	Texture textureBackground;
 	Texture textureTree;
