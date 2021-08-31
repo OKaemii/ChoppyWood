@@ -1,4 +1,5 @@
 //#include <iostream>
+#include <sstream>
 #include <SFML/Graphics.hpp>
 
 // make code easier to read
@@ -13,16 +14,26 @@ int main()
 	// create and open a window for the game
 	RenderWindow window(vm, "Timber!", Style::Fullscreen);
 
-	// game text gui
-	Font fontKOMIKABG;
-	fontKOMIKABG.loadFromFile("fonts/KOMIKABG.ttf");
+	// HUD
+	int score = 0;
+
+	Font fontKOMIKAP_;
+	fontKOMIKAP_.loadFromFile("fonts/KOMIKAP_.ttf");
 
 	Text textGamePrompt;
+	Text textScore;
 	// game prompt text properties
 	textGamePrompt.setString("Press Enter to start!");
+	textScore.setString("Score = 0");
+	// size -- want it really big
 	textGamePrompt.setCharacterSize(75);
+	textScore.setCharacterSize(100);
+	// colour
 	textGamePrompt.setFillColor(Color::White);
-	textGamePrompt.setFont(fontKOMIKABG);
+	textScore.setFillColor(Color::White);
+	// font
+	textGamePrompt.setFont(fontKOMIKAP_);
+	textScore.setFont(fontKOMIKAP_);
 
 	// texture to hold graphics on the GPU
 	Texture textureBackground;
