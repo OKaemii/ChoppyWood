@@ -63,10 +63,12 @@ int main()
     float cloud3speed = 0.0f;
 
     // is bee currently mobile?
-    bool beeAcive = false;
+    bool beeActive = false;
     // bee stats
     float beeSpeed = 0.0f;
 
+    // object to measure time
+    Clock clock;
     while (window.isOpen())
     {
         /*
@@ -80,7 +82,32 @@ int main()
         /*
         * Update the Scene
         */
-        // nothing to do for now
+        // measure time
+        Time dt = clock.restart();
+
+        // bee animation
+        if (!beeActive)
+        {
+            // assign rand speed to bee
+            srand((int)time(0));
+            beeSpeed = (rand() % 200) + 200;
+            // assign rand bee to altitude
+            srand((int)time(0) * 10);
+            float height = (rand() % 500) + 500;
+            spriteBee.setPosition(2000, height);
+            beeActive = true;
+        }
+        // bee to move across screen
+        else
+        {
+            spriteBee.setPosition(spriteBee.getPosition().x - (beeSpeed * dt.asSeconds()), spriteBee.getPosition().y);
+            // if bee at end of screen
+            if (spriteBee.getPosition().x < -100)
+            {
+                // reset bee and random height
+                beeActive = false;
+            }
+        }
 
         /*
         * Draw the Scene
@@ -88,10 +115,21 @@ int main()
         // draw a new scene
         window.clear();
 
-        // display background onto screenview
+        // background
         window.draw(spriteBackground);
+
+        // clouds
+        window.draw(spriteCloud1);
+        window.draw(spriteCloud2);
+        window.draw(spriteCloud3);
+
+        // tree
         window.draw(spriteTree);
 
+        // bee
+        window.draw(spriteBee);
+
+        // display onto viewscreen
         window.display();
     }
 
