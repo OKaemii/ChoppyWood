@@ -34,6 +34,15 @@ int main()
 	// font
 	textGamePrompt.setFont(fontKOMIKAP_);
 	textScore.setFont(fontKOMIKAP_);
+	// position
+	FloatRect rectText = textGamePrompt.getLocalBounds();
+	textGamePrompt.setOrigin(
+		rectText.left +
+		rectText.width / 2.0f,
+		rectText.top +
+		rectText.height / 2.0f);
+	textGamePrompt.setPosition(1920 / 2.0f, 1080 / 2.0f);
+	textScore.setPosition(20, 20);
 
 	// texture to hold graphics on the GPU
 	Texture textureBackground;
@@ -199,6 +208,11 @@ int main()
 			}
 		}
 
+		// update the score
+		std::stringstream ss;
+		ss << "Score = " << score;
+		textScore.setString(ss.str());
+
 		/*
 		* Draw the Scene
 		*/
@@ -219,6 +233,13 @@ int main()
 		// bee
 		window.draw(spriteBee);
 
+		// HUD
+		window.draw(textScore);
+		if (paused)
+		{
+			window.draw(textGamePrompt);
+		}
+			
 		// display onto viewscreen
 		window.display();
 	}
